@@ -1,0 +1,39 @@
+Μέλλιου Αικατερίνη 1115 2007 00 095
+Προγραμματισμός Συστήματος
+Άσκηση 2η
+
+1. Ανάπτυξη
+
+	Η εργασία αναπτύχθηκε σε C με CLion της JetBrains και δοκιμάστηκε σε ubuntu (14.04 και 16.04) και τα μηχανήματα της σχολής.
+
+2. Γενική Δομή
+
+	Το project αποτελείται από τρία εκτελέσιμα, jms_coord, jms_console και jms_pool και το bash script.
+
+Α. jms_console
+
+	Η κονσόλα υλοποιείται ως ένα μέσο παραγωγής εισόδου και αναπαραγωγής εξόδου. Λειτουργεί ουσιαστικά μόνο ως πελάτης των named pipes, ενώ η επεξεργασία γίνεται στην πλευρά του εξυπηρέτη, jms_coord. Το jms_console προωθεί μηνύματα και εκτυπώνει ό,τι δέχεται.
+
+Β. jms_coord
+
+	Ο διοργανωτής υλοποιεί όλη την ουσιαστική λειτουργεία του συστήματος. Το jms_coord αναθέτει την εκτέλεση των εργασιών σε pools, συλλέγει όλα τα στοιχεία και απαντά σε ερωτήματα. Είναι ο κύριος εξυπηρέτης του όλου συστήματος.
+
+Γ. jms_pool
+
+	Κάθε δεξαμενή εκκινείται από τον coordinator και διαχειρίζεται ορισμένο αριθμό εργασιών που παραλαμβάνει σειριακά από named pipe. Σε κάθε αλλαγή κατάστασης οποιασδήποτε εργασίας, ο jms_coord ενημερώνεται.
+
+Δ. jms_script.sh
+
+	To script είναι πλήρως λειτουργικό όπως περιγράφεται στην εκφώνηση. Για την ορθή εκτέλεση του size πρέπει να δοθεί το πλήρες path tου καταλόγου που περιέχει τους φακέλλους που έφτιαξαν οι εργασίες.
+
+3. Εξωτερικές πηγές κώδικα
+
+* https://linuxprograms.wordpress.com/2012/06/22/c-getopt-example/ -> ορίσματα της main
+* https://www.gnu.org/software/libc/manual/html_node/Testing-for-Delivery.html#Testing-for-Delivery -> μπλοκάρισμα όλων των σημάτων έως ότου το πρόγραμμα είναι έτοιμο να δεχθεί σήματα
+* http://stackoverflow.com/questions/8400530/how-can-i-tell-in-linux-which-process-sent-my-process-a-signal -> ποια διεργασία έστειλε το σήμα
+* http://stackoverflow.com/questions/6898337/determine-programmatically-if-a-program-is-running -> έλεγχος λειτουργείας του coord από πλευράς console
+* http://stackoverflow.com/questions/1442116/how-to-get-date-and-time-value-in-c-program -> μεταβλητές χρόνου
+* http://stackoverflow.com/questions/21762208/notify-parent-process-when-child-process-dies -> τερματισμός όλων των παιδιών μιας διεργασίας
+* http://stackoverflow.com/questions/11198604/c-split-string-into-an-array-of-strings -> προετοιμασία ορισμάτων της exec
+* http://linuxcommand.org/wss0130.php -> ορίσματα του bash script
+* http://stackoverflow.com/questions/806906/how-do-i-test-if-a-variable-is-a-number-in-bash -> έλεγχος αριθμητικής μεταβλητής

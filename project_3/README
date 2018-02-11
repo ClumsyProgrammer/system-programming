@@ -1,0 +1,30 @@
+Μέλλιου Αικατερίνη 1115 2007 00 095
+Προγραμματισμός Συστήματος
+Άσκηση 3η
+
+1. Ανάπτυξη
+
+	Η εργασία αναπτύχθηκε σε C με CLion της JetBrains και δοκιμάστηκε σε ubuntu (14.04 και 16.04) και τα μηχανήματα της σχολής.
+
+2. Γενική Δομή
+
+	Το project περιέχει δύο εκτελέσιμα: τον Initiator που είναι ο πελάτης που στέλνει τις αιτήσεις κατοπτρισμού και τον Server ο οποίος υλοποιεί τις λειτουργείες των Mirror και Content Εξυπηρετών στην ίδια εφαρμογή. Το project μεταγλωττίζεται με εννιαίο makefile και κάθε εκτελέσιμο τρέχει με εντολή εντός του αντίστοιχου φακέλλου.
+
+Α. Initiator
+
+	Ο Initiator είναι ένας απλός πελάτης που στέλνει αιτήσεις και εκτυπώνει τα εισερχόμενα μηνύματα. Το format κλίσης ακολουθεί τις οδηγίες της άσκησης. Τερματίζει με την εντολή exit από τη γραμμή εντολών.
+
+Β. Server
+
+	Ο Server ενσωματώνει τόσο τις λειτουργείες του Mirror όσο και του Content server. Καλείται βάσει του προτύπου: ./Server -p <port> -d <dir_of_content> -w <threadnum>. Εντός του <dir_of_content> βρίσκονται και τα τοπικά αρχεία και τα απομακρυσμένα. Οι workers επεξεργάζονται αιτήσεις GET, ASK και FETCH, ενώ οι managers καλούνται σε περίπτωση LIST. Κάθε GET αντικαθίσταται από μία LIST, κάθε LIST από τις αντίστοιχες ASK, κάθε ASK από μία FETCH. Οι αιτήσεις μπαίνουν σε λίστα FIFO.
+
+3. Εξωτερικές πηγές κώδικα
+
+* https://www.gnu.org/software/make/manual/make.html#Recursion -> αναδρομή για makefile
+* https://stackoverflow.com/questions/3939157/c-getopt-multiple-value -> πολλαπλά ορίσματα για την ίδια σημαία
+* https://stackoverflow.com/questions/2014033/send-and-receive-a-file-in-socket-programming-in-linux-with-c-c-gcc-g -> χρήση socket
+* http://pubs.opengroup.org/onlinepubs/009695399/functions/popen.html -> δείγμα popen
+* http://www.binarytides.com/server-client-example-c-sockets-linux/ -> εξυπηρέτης που δέχεται πολλαπλές συνδέσεις
+* http://www.binarytides.com/multiple-socket-connections-fdset-select-linux/ -> ανάγνωση socket με select
+* https://stackoverflow.com/questions/863952/passing-structures-as-arguments-while-using-pthread-create -> ορίσματα thread
+* https://stackoverflow.com/questions/11939422/safe-cancellation-of-pthreads-using-a-cleanup-handler-in-c -> cleanup handler για thread

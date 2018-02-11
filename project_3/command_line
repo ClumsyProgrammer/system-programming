@@ -1,0 +1,34 @@
+
+
+./Initiator -n localhost -p 4444 -s localhost:5555:folder1:3, localhost:5555:folder3:2
+
+
+
+
+./Server -p 4444 -d content_folder -w 5
+
+
+
+./Server -p 5555 -d content_folder -w 8
+
+
+
+
+
+
+
+
+
+
+ valgrind --leak-check=yes ./Initiator -n localhost -p 4444 -s localhost:5555:folder1:3, localhost:5555:folder3:2
+
+
+
+
+ valgrind --leak-check=yes ./Server -p 4444 -d content_folder -w 5
+
+
+
+ valgrind --leak-check=yes ./Server -p 5555 -d content_folder -w 8
+
+

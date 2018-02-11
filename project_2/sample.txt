@@ -1,0 +1,11 @@
+submit ./hello 15
+submit ls -l
+submit ./hello 3
+submit ls -l
+submit ./hello
+submit ./hello 150
+submit ls -l
+submit ./hello 300
+submit ls -l
+submit ./hello 2
+
